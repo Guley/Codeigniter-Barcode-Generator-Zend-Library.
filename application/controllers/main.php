@@ -5,8 +5,10 @@ class Main extends CI_Controller {
 	public function index()
 	{
 		//I'm just using rand() function for data example
+		$data=[];
 		$temp = rand(10000, 99999);
-		$this->set_barcode($temp);
+		$data['barcode']=$this->set_barcode($temp);
+		$this->load->template('welcome',$data);
 	}
 	
 	private function set_barcode($code)
@@ -16,7 +18,14 @@ class Main extends CI_Controller {
 		//load in folder Zend
 		$this->zend->load('Zend/Barcode');
 		//generate barcode
-		Zend_Barcode::render('code128', 'image', array('text'=>$code), array());
+		$file = Zend_Barcode::draw('code128', 'image', array('text'=>$kode), array());
+		    $code = time().$kode;
+		    $barcodeRealPath = APPPATH. '/cache/'.$code.'.png';
+		    $barcodePath = APPPATH.'/cache/';
+
+		    header('Content-Type: image/png');
+		    $store_image = imagepng($file,$barcodeRealPath);
+		    return $barcodePath.$code.'.png';
 	}
 	
 }
