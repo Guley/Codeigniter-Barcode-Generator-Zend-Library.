@@ -1,6 +1,6 @@
 <?php if( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class CI_Zend {
+class Zend {
 
 	public function __construct($class = NULL)
 	{
