@@ -18,8 +18,8 @@ class Main extends CI_Controller {
 		//load in folder Zend
 		$this->zend->load('Zend/Barcode');
 		//generate barcode
-		$file = Zend_Barcode::draw('code128', 'image', array('text'=>$kode), array());
-		    $code = time().$kode;
+		$file = Zend_Barcode::draw('code128', 'image', array('text'=>$code), array());
+		    $code = time().$code;
 		    $barcodeRealPath = APPPATH. '/cache/'.$code.'.png';
 		    $barcodePath = APPPATH.'/cache/';
 
